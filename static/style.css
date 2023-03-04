@@ -9,7 +9,8 @@ body {
 	font-size: 36px;
 	font-weight: 700;
 	text-align: center;
-	color: #3a6e76;
+	/* color: #3a6e76; */
+	color: #4CAF50;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	margin-top: 50px;
@@ -29,7 +30,7 @@ h1 {
 	margin-right:auto;
 	margin-bottom: 30px;
 }
-#menu {
+/* #menu {
 	height:auto;
 	width:100%;
 	float:center;
@@ -68,7 +69,7 @@ li {
 	background-color: #84eaee;
 	color: #3f51b5;
 	border-radius: 5px;
-}
+} */
 
 #imageGallery {
 	width:40%;
@@ -150,7 +151,7 @@ li {
 	text-align: center;
 }
 
-#pliki {
+.pliki {
 	background-color:#21444b;
 	text-align:center;
 	height:100%;
@@ -160,7 +161,11 @@ li {
 	margin-bottom: 30px;
 }
 
-#pliki a {
+.pliki h2 {
+	
+}
+
+.pliki a {
 	display: block;
 	color:#5aa5ad;
 	font-size: 20px;
@@ -170,7 +175,7 @@ li {
 	transition: all 0.3s ease;
 }
 
-#pliki a:hover {
+.pliki a:hover {
 	background-color: #84eaee;
 	color: #0f242a;
 	border-radius: 5px;
@@ -185,4 +190,102 @@ li {
 	margin-right:auto;
 	text-align:center;
 	padding:20px;
+}
+
+.menu {
+	width: 100%;
+	background-color: #333;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+
+.menu nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+.menu nav ul li {
+	float: left;
+}
+
+.menu nav ul li:hover {
+	background-color: #4CAF50;
+}
+
+.menu nav ul li a {
+	display: block;
+	padding: 14px 16px;
+	color: white;
+	font-size: 17px;
+	text-decoration: none;
+}
+
+.menu nav ul ul {
+	display: none;
+	position: absolute;
+	top: 48px;
+}
+
+.menu nav ul li:hover > ul {
+	display: inherit;
+}
+
+.menu nav ul ul li {
+	width: 200px;
+	float: none;
+	display: list-item;
+	position: relative;
+}
+
+.menu nav ul ul ul li {
+	position: absolute;
+	top: 0;
+	left: 200px;
+}
+
+.menu nav ul ul li a {
+	color: #fff;
+	background-color: #555;
+	padding: 10px 16px;
+	text-decoration: none;
+	font-size: 16px;
+	text-align: left;
+}
+
+.menu nav ul ul li a:hover {
+	background-color: #4CAF50;
+}
+
+.menu nav ul ul ul {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 250px;
+}
+
+.menu nav ul ul ul li a {
+	padding: 10px;
+	background-color: #555;
+	color: #fff;
+}
+
+.menu nav ul ul ul li a:hover {
+	background-color:#4CAF50;
+}
+
+.quiz {
+	width:80%;
+	height:80%;
+	margin-left:auto;
+	margin-right:auto;
+	background-color: white;
+	padding: 30px;
+	text-align:center;
 }

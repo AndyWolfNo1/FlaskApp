@@ -2,7 +2,8 @@
 {% block body %}
 		{% include 'navbar.html' %}
 
-<div id="pliki">	
+<div class="pliki">
+		<h2> Pliki na serwerze </h2>
 	{% for link in links %}
 		<a href="/download/{{link}}">{{link}}</a>
 	{% endfor %}

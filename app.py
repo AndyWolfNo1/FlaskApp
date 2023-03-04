@@ -7,13 +7,30 @@ from flask import redirect
 from flask import url_for
 from flask import session
 import jinja2
+from jinja2.filters import escape
 import json
-import sqlite3
 import os
 from os.path import join, dirname, realpath
 from db import MySQLDatabase
 import config
 
+def get_questions():
+    cnx = MySQLDatabase.getInstance()
+    query = ("SELECT * FROM `pytania`")
+    questions = cnx.execute_query_questions(query)
+    return questions
+
+def format_questions(data):
+    questions = []
+
+    for row in data:
+        question = {}
+        question["question"] = row[1]
+        question["choices"] = json.loads(row[2])
+        question["answer"] = row[3]
+        questions.append(question)
+
+    return questions
 
 IMAGES_PATH = join(dirname(realpath(__file__)), 'static/img/')
 RESOURCES_PATH = join(dirname(realpath(__file__)), '/var/www/FlaskApp/resources/')
@@ -21,6 +38,40 @@ RESOURCES_PATH = join(dirname(realpath(__file__)), '/var/www/FlaskApp/resources/
 app = Flask(__name__)
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(['templates/'])) 
 app.secret_key = config.SECRET_KEY
+questions = get_questions()
+questions = format_questions(questions)
+
+@app.route("/quiz")
+def index_quiz():
+    return render_template("index_quiz.html", questions=questions)
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    score = 0
+    for question in questions:
+        answer = request.form.get(question["question"])
+        if answer == question["answer"]:
+            score += 1
+    return render_template("result.html", score=score, total=len(questions))
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if 'logged_in' in session:
+        if request.method == "POST":
+            question = request.form.get("question")
+            choices = request.form.get("choices").split(",")
+            choices = json.dumps(choices)
+            answer = request.form.get("answer")
+            cnx = MySQLDatabase.getInstance()
+            query = "INSERT INTO pytania (question, choices, answer) VALUES (%s, %s, %s)"
+            val = [question, choices, answer]
+            cnx.execute_query_add_question(query, val)
+            return render_template("add_question.html", success=True)
+        
+        else:
+            return render_template("add_question.html", success=False)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/')
 def index():
@@ -49,9 +100,12 @@ def list_files():
 
 @app.route('/download/<path:file_name>')
 def download_file(file_name):
-    file_path = os.path.join(RESOURCES_PATH, file_name) # utwórz pełną ścieżkę do pliku
-    return send_file(file_path, as_attachment=True) # pobierz plik z serwera i zwróć go jako załącznik
-
+    if 'logged_in' in session:
+        file_path = os.path.join(RESOURCES_PATH, file_name) # utwórz pełną ścieżkę do pliku
+        return send_file(file_path, as_attachment=True) # pobierz plik z serwera i zwróć go jako załącznik
+    else:
+        return redirect(url_for('login'))
+    
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if 'logged_in' in session:
@@ -79,7 +133,7 @@ def login():
 
         cnx = MySQLDatabase.getInstance()
         query = ("SELECT * FROM users WHERE username = %s AND password = %s")
-        user = cnx.execute_query(query,(username,password))
+        user = cnx.execute_query_one(query,(username,password))
        
         if user is not None:
             session['logged_in'] = True
@@ -97,5 +151,11 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
+@app.context_processor
+def inject_variables():
+    return dict(
+        app_name=config.APP_NAME
+        )
+
 if __name__ == "__main__":
-   app.run()
+  app.run()

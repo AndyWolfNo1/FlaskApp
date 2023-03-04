@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+		{% include 'navbar.html' %}
+	<div class="quiz">
+		<h1>Rezyltat Quizu</h1>
+		<p>Masz {{ score }} z {{ total }} poprawne!</p>
+		<p><a href="/quiz">powrót do quizu</a></p>
+	</div>
+{% endblock %}
