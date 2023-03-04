@@ -1,0 +1,188 @@
+body {
+	background-color: #0f242a;
+	padding-left:10%;
+	padding-right:10%;
+}
+
+.title {
+	font-family: 'Roboto', sans-serif;
+	font-size: 36px;
+	font-weight: 700;
+	text-align: center;
+	color: #3a6e76;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 50px;
+	margin-bottom: 30px;
+	text-shadow: 4px 4px 6px rgba(197, 199, 218, 1);
+}
+
+h1 {
+	text-align:center;
+}
+
+#prezentacja {
+	text-align:center;
+	height:100%;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 30px;
+}
+#menu {
+	height:auto;
+	width:100%;
+	float:center;
+	margin-bottom: 2%;
+}
+nav {
+	background-color: #5aa5ad;
+	height: 60px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+li {
+  height: 100%;
+}
+
+#menu a {
+	display: block;
+	color: #0f242a;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	padding: 20px;
+	transition: all 0.3s ease;
+}
+
+#menu a:hover {
+	background-color: #84eaee;
+	color: #3f51b5;
+	border-radius: 5px;
+}
+
+#imageGallery {
+	width:40%;
+	margin-left:auto;
+	margin-right:auto;
+	top:90%;
+	left:26%;
+	padding:5%;
+	background-color:#21444b;
+	text-align:center;
+}
+
+.thumbnail {
+	width: 90%;
+	height: auto;
+	margin: 10px;
+}
+
+#kontakt {
+	color:white;
+	font-size:25px;
+	width:40%;
+	margin-left:auto;
+	margin-right:auto;
+	top:90%;
+	left:26%;
+	padding:5%;
+	background-color:#21444b;
+	text-align:center;
+}
+
+.register {
+	width:20%;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:5%;
+	background:#21444b;
+	color:#84eaee;
+	display:flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-left:2em;
+	padding-right:2em;
+	padding-bottom:.4em;
+	border-radius:25px;
+	transition: .4s case-in-out;	
+}
+
+.register form {
+	text-align: center;
+}
+
+#error {
+	color:red;
+}
+
+.login {
+	width:20%;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:5%;
+	background:#21444b;
+	color:#84eaee;
+	display:flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-left:2em;
+	padding-right:2em;
+	padding-bottom:2.5em;
+	border-radius:25px;
+	transition: .4s case-in-out;	
+}
+
+.login form {
+	text-align: center;
+}
+
+#pliki {
+	background-color:#21444b;
+	text-align:center;
+	height:100%;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 30px;
+}
+
+#pliki a {
+	display: block;
+	color:#5aa5ad;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	padding: 20px;
+	transition: all 0.3s ease;
+}
+
+#pliki a:hover {
+	background-color: #84eaee;
+	color: #0f242a;
+	border-radius: 5px;
+}
+
+.upload {
+	background-color: #21444b;
+	color:#84eaee;
+	height:300px;
+	width:40%;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	padding:20px;
+}
